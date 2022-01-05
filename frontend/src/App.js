@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+
 
 class App extends Component {
   state = {
@@ -8,13 +7,17 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const response = fetch('/home').then((res)=>this.setState({msg:res.text()}));
+    const response = fetch('/home').then((res)=>res.text()).then((txt)=>this.setState({msg:txt}));
+    
   }
+
   render() {
-    const {msg1} = this.state.msg;
-    console.log(msg1)
+    const {msg} = this.state;
+    console.log(msg)
     return (
-        <h1>{msg1}</h1>
+      <div className="App">
+      <h1>{msg}</h1>
+    </div>
     );
   }
 }
